@@ -32,6 +32,15 @@ export default function PatientDetails({ patient }: PatientDetailProps) {
 				label='Sintomas'
 				data={patient.symptoms}
 			/>
+
+			<div className='flex gap-2 mt-10'>
+				<button className='py-2 px-10 bg-indigo-500 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg'>
+					Editar
+				</button>
+				<button className='py-2 px-10 bg-red-500 hover:bg-red-700 text-white font-bold uppercase rounded-lg'>
+					Eliminar
+				</button>
+			</div>
 		</div>
 	);
 }
