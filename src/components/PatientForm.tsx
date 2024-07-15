@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import Error from './Error';
 
 export default function PatientForm() {
 	const {
@@ -7,8 +8,8 @@ export default function PatientForm() {
 		formState: { errors },
 	} = useForm();
 
-	const registerPatient = () => {
-		console.log('Nuevo paciente');
+	const registerPatient = (data) => {
+		console.log(data);
 	};
 
 	return (
@@ -39,7 +40,7 @@ export default function PatientForm() {
 							required: 'El nombre del paciente es obligatorio',
 						})}
 					/>
-					{errors.name?.message}
+					{errors.name && <Error>{errors.name?.message?.toString()}</Error>}
 				</div>
 
 				<div className='mb-5'>
@@ -53,7 +54,13 @@ export default function PatientForm() {
 						className='w-full p-3  border border-gray-100'
 						type='text'
 						placeholder='Nombre del Propietario'
+						{...register('caretaker', {
+							required: 'El nombre del propietario es obligatorio',
+						})}
 					/>
+					{errors.caretaker && (
+						<Error>{errors.caretaker.message?.toString()}</Error>
+					)}
 				</div>
 
 				<div className='mb-5'>
@@ -67,7 +74,15 @@ export default function PatientForm() {
 						className='w-full p-3  border border-gray-100'
 						type='email'
 						placeholder='Email de Registro'
+						{...register('email', {
+							required: 'El email es Obligatorio',
+							pattern: {
+								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i,
+								message: 'Email no valido',
+							},
+						})}
 					/>
+					{errors.email && <Error>{errors.email.message?.toString()}</Error>}
 				</div>
 
 				<div className='mb-5'>
@@ -80,7 +95,11 @@ export default function PatientForm() {
 						id='date'
 						className='w-full p-3  border border-gray-100'
 						type='date'
+						{...register('date', {
+							required: 'La fecha de alta es obligatoria',
+						})}
 					/>
+					{errors.date && <Error>{errors.date.message?.toString()}</Error>}
 				</div>
 
 				<div className='mb-5'>
@@ -92,7 +111,14 @@ export default function PatientForm() {
 					<textarea
 						id='symptoms'
 						className='w-full p-3  border border-gray-100'
-						placeholder='Síntomas del paciente'></textarea>
+						placeholder='Síntomas del paciente'
+						{...register('symptoms', {
+							required: 'Los sintomas son obligatorios',
+						})}
+					/>
+					{errors.symptoms && (
+						<Error>{errors.symptoms.message?.toString()}</Error>
+					)}
 				</div>
 
 				<input
