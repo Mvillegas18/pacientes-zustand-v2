@@ -13,7 +13,7 @@ export default function PatientsList() {
 					</h2>
 					<p className='text-xl mt-5 mb-10 text-center'>
 						Administra tus {''}
-						<span className='bg-indigo-600 font-bold'>Pacientes y citas</span>
+						<span className='text-indigo-600 font-bold'>Pacientes y citas</span>
 					</p>
 
 					{patients.map((patient) => (

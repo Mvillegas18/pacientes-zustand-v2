@@ -10,12 +10,14 @@ export default function PatientForm() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<DraftPatient>();
 
 	const registerPatient = (data: DraftPatient) => {
 		addPatient(data);
-	};
 
+		reset();
+	};
 	return (
 		<div className='md:w-1/2 lg:w-2/5 mx-5'>
 			<h2 className='font-black text-3xl text-center'>Seguimiento Pacientes</h2>
